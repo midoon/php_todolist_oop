@@ -22,6 +22,17 @@ namespace Repository{
         }
 
         function remove(int $number): bool{
+            
+
+            if($number > sizeof($this->todoList)){
+                return false;
+            }
+
+            for($i = $number; $i< sizeof($this->todoList); $i++){
+                $this->todoList[$i] = $this->todoList[$i+1];
+            }
+
+            unset($this->todoList[sizeof($this->todoList)]);
             return true;
         }
 
