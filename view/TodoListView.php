@@ -25,11 +25,15 @@ namespace View{
             while(true){
                 echo "=================================".PHP_EOL;
                 echo "TODO LIST".PHP_EOL;
+                
                 $this->todoListService->showTodoList();
+                echo "---------------------------------".PHP_EOL;
+
 
                 echo "1. Tambah Todo".PHP_EOL;
                 echo "2. Hapus Todo".PHP_EOL;
                 echo "x. Keluar".PHP_EOL;
+                echo "---------------------------------".PHP_EOL;
 
                 $pilihan = InputHelper::input("Masukkan pilihan: ");
 
@@ -46,11 +50,25 @@ namespace View{
         }
 
         function addTodoList(): void{
-            echo "tambah todo";
+            echo "==TAMBAH TODO==". PHP_EOL;
+            $info = InputHelper::input("Masukkan info (x untuk batal): ");
+            if ($info == "x"){
+                echo "BERHASIL BATAL TAMBAH" . PHP_EOL;
+                return;
+            } else{
+                $this->todoListService->addTodoList($info);
+            }
         }
 
         function removeTodoList(): void{
-            echo "haspu todo";
+            echo "==HAPPUS TODO==". PHP_EOL;
+            $number = InputHelper::input("Masukkan nomor (x untuk batal): ");
+            if ($number == "x"){
+                echo "BERHASIL BATAL HAPUS" . PHP_EOL;
+                return;
+            } else{
+                $this->todoListService->removeTodoList($number);
+            }
         }
     }
 }
